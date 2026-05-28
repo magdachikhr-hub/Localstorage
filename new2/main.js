@@ -24,7 +24,7 @@ const input = document.getElementById("text");
 const addBtn = document.querySelector(".add");
 const listContainer = document.querySelector(".list");
 
-let todos = [];
+let todos = JSON.parse(localStorage.getItem("todosArr")) || [];
 
 addBtn.addEventListener("click", () => {
   let todo = {
@@ -40,6 +40,7 @@ addBtn.addEventListener("click", () => {
 });
 
 function render() {
+  listContainer.innerHTML = "";
   todos.forEach((e) => {
     const li = document.createElement("li");
     li.innerHTML = ` <li>
@@ -48,8 +49,6 @@ function render() {
     </li>`;
 
     listContainer.append(li);
-
-    todos = [];
   });
 }
 
