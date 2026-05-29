@@ -30,6 +30,7 @@ addBtn.addEventListener("click", () => {
   let todo = {
     id: crypto.randomUUID(),
     text: input.value,
+    completed: false,
   };
 
   todos.push(todo);
@@ -44,11 +45,18 @@ function render() {
   todos.forEach((e) => {
     const li = document.createElement("li");
     li.innerHTML = ` <li>
-      <input type="checkbox" id="todoCkeck" />
-      <label for="todoCkeck">${e.text}</label>
+      <input type="checkbox" ${e.completed ? "checked" : ""} id="${e.id}" />
+      <label for="${e.id}">${e.text}</label>
     </li>`;
 
     listContainer.append(li);
+
+    const checkbox = li.querySelector("input");
+
+    checkbox.addEventListener("click", () => {
+      e.completed = checkbox.checked;
+      localStorage.setItem("todosArr", JSON.stringify(todos));
+    });
   });
 }
 
