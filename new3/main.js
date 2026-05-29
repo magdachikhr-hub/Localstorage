@@ -16,16 +16,20 @@ getBirdRecords();
 
 function displayCard(birds) {
   birds.forEach((bird) => {
-    const div = document.createElement("card");
+    const card = document.createElement("card");
+
+    const { gen, en, cnt, date, sp, file } = bird;
 
     card.innerHTML = `
-    <h4></h4>
-    <span></span>
-    <p class="cauntry"></p>
-    <p class="date"></p>
+    <h4>${gen}</h4>
+    <span>${en}</span>
+    <p class="country">${cnt}</p>
+    <p class="date">${date}</p>
 
-    <span class="spiece "></span>
-    <audio src=""></audio> `;
+    <span class="species">${sp}</span>
+    <audio src="${file}" controls ></audio> `;
+
+    container.append(card);
   });
 }
 
