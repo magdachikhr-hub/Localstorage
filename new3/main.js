@@ -16,9 +16,16 @@ getBirdRecords();
 
 function displayCard(birds) {
   birds.forEach((bird) => {
-    const card = document.createElement("card");
+    const card = document.createElement("div");
 
     const { gen, en, cnt, date, sp, file } = bird;
+
+    let audioUrl = bird.file;
+    if (!audioUrl) return;
+
+    if (audioUrl.startsWith("//")) {
+      audioUrl = "https:" + audioUrl;
+    }
 
     card.innerHTML = `
     <h4>${gen}</h4>
@@ -27,7 +34,9 @@ function displayCard(birds) {
     <p class="date">${date}</p>
 
     <span class="species">${sp}</span>
-    <audio src="${file}" controls ></audio> `;
+        <audio controls preload="none">
+        <source src="${audioUrl}" type="audio/mpeg">
+      </audio> `;
 
     container.append(card);
   });
