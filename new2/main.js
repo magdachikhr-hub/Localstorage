@@ -28,7 +28,8 @@ let todos = JSON.parse(localStorage.getItem("todosArr")) || [];
 
 addBtn.addEventListener("click", () => {
   let todo = {
-    id: crypto.randomUUID(),
+    // id: crypto.randomUUID(),
+    id: 1,
     text: input.value,
     completed: false,
   };
