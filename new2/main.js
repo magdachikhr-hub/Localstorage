@@ -51,6 +51,7 @@ let filter = "all";
 const allFilter = document.querySelector(".all");
 const activeFiler = document.querySelector(".active");
 const completedFilter = document.querySelector(".completed");
+const clearAll = document.querySelector(".clear");
 
 allFilter.addEventListener("click", () => {
   filter = "all";
@@ -67,6 +68,10 @@ completedFilter.addEventListener("click", () => {
   filter = "completed";
   render();
 });
+// clear.addEventListener("click", () => {
+//   filter = "clear";
+//   render();
+// });
 
 function render() {
   listContainer.innerHTML = "";
@@ -79,6 +84,11 @@ function render() {
   if (filter === "completed") {
     filteredTasks = todos.filter((t) => t.completed);
   }
+
+  // if (filter === "clear") {
+  //   todos = todos.filter((t) => !t.completed);
+  //   localStorage.setItem("todosArr", JSON.stringify(todos));
+  // }
 
   filteredTasks.forEach((e) => {
     const li = document.createElement("li");
@@ -97,6 +107,12 @@ function render() {
     deleteBtn.addEventListener("click", () => {
       todos = todos.filter((t) => t.id !== e.id);
 
+      localStorage.setItem("todosArr", JSON.stringify(todos));
+      render();
+    });
+
+    clearAll.addEventListener("click", () => {
+      todos = todos.filter((t) => !t.completed);
       localStorage.setItem("todosArr", JSON.stringify(todos));
       render();
     });
