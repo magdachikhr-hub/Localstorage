@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "name": "natia",
+      "age": "23",
+      "id": "50"
+    },
+    {
+      "name": "magda",
+      "age": "20",
+      "id": "51"
+    },
+    {
+      "name": "boris",
+      "age": "40",
+      "id": "52"
+    },
+    {
+      "name": "davit",
+      "age": "20",
+      "id": "skNa91QgAHg"
+    },
+    {
+      "name": "davit",
+      "age": "20",
+      "id": "UtwCUSttOQs"
+    },
+    {
+      "name": "davit",
+      "age": "20",
+      "id": "tKOSJ3qeZ08"
+    },
+    {
+      "name": "davit",
+      "age": "20",
+      "id": "NBZBIyyjHvI"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
