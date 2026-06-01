@@ -27,20 +27,22 @@ const listContainer = document.querySelector(".list");
 let todos = JSON.parse(localStorage.getItem("todosArr")) || [];
 
 input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    let todo = {
-      id: crypto.randomUUID(),
-      // id: 1,
-      text: input.value,
-      completed: false,
-    };
+  if (!(input.value === "")) {
+    if (e.key === "Enter") {
+      let todo = {
+        id: crypto.randomUUID(),
+        // id: 1,
+        text: input.value,
+        completed: false,
+      };
 
-    todos.push(todo);
+      todos.push(todo);
 
-    localStorage.setItem("todosArr", JSON.stringify(todos));
+      localStorage.setItem("todosArr", JSON.stringify(todos));
 
-    render();
-    input.value = "";
+      render();
+      input.value = "";
+    }
   }
 });
 
