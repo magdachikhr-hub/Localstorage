@@ -29,8 +29,8 @@ let todos = JSON.parse(localStorage.getItem("todosArr")) || [];
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     let todo = {
-      // id: crypto.randomUUID(),
-      id: 1,
+      id: crypto.randomUUID(),
+      // id: 1,
       text: input.value,
       completed: false,
     };
@@ -83,11 +83,21 @@ function render() {
     li.innerHTML = ` <li>
       <input type="checkbox" ${e.completed ? "checked" : ""} id="${e.id}" />
       <label for="${e.id}">${e.text}</label>
+      <span class="delete">X</span>
     </li>`;
 
     listContainer.append(li);
 
     const checkbox = li.querySelector("input");
+
+    const deleteBtn = document.querySelector(".delete");
+
+    deleteBtn.addEventListener("click", () => {
+      todos = todos.filter((t) => t.id !== e.id);
+
+      localStorage.setItem("todosArr", JSON.stringify(todos));
+      render();
+    });
 
     checkbox.addEventListener("click", () => {
       e.completed = checkbox.checked;
