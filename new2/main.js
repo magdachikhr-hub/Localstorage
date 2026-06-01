@@ -40,12 +40,45 @@ input.addEventListener("keydown", (e) => {
     localStorage.setItem("todosArr", JSON.stringify(todos));
 
     render();
+    input.value = "";
   }
+});
+
+let filter = "all";
+
+const allFilter = document.querySelector(".all");
+const activeFiler = document.querySelector(".active");
+const completedFilter = document.querySelector(".completed");
+
+allFilter.addEventListener("click", () => {
+  filter = "all";
+  render();
+});
+
+activeFiler.addEventListener("click", () => {
+  filter = "active";
+
+  render();
+});
+
+completedFilter.addEventListener("click", () => {
+  filter = "completed";
+  render();
 });
 
 function render() {
   listContainer.innerHTML = "";
-  todos.forEach((e) => {
+
+  let filteredTasks = todos;
+  if (filter === "active") {
+    filteredTasks = todos.filter((t) => !t.completed);
+  }
+
+  if (filter === "completed") {
+    filteredTasks = todos.filter((t) => t.completed);
+  }
+
+  filteredTasks.forEach((e) => {
     const li = document.createElement("li");
     li.innerHTML = ` <li>
       <input type="checkbox" ${e.completed ? "checked" : ""} id="${e.id}" />
