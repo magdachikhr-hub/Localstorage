@@ -21,24 +21,26 @@
 // TODO APP
 
 const input = document.getElementById("text");
-const addBtn = document.querySelector(".add");
+// const addBtn = document.querySelector(".add");
 const listContainer = document.querySelector(".list");
 
 let todos = JSON.parse(localStorage.getItem("todosArr")) || [];
 
-addBtn.addEventListener("click", () => {
-  let todo = {
-    // id: crypto.randomUUID(),
-    id: 1,
-    text: input.value,
-    completed: false,
-  };
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    let todo = {
+      // id: crypto.randomUUID(),
+      id: 1,
+      text: input.value,
+      completed: false,
+    };
 
-  todos.push(todo);
+    todos.push(todo);
 
-  localStorage.setItem("todosArr", JSON.stringify(todos));
+    localStorage.setItem("todosArr", JSON.stringify(todos));
 
-  render();
+    render();
+  }
 });
 
 function render() {
